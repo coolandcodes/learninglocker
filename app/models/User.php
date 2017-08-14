@@ -2,12 +2,14 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
-use Jenssegers\Mongodb\Model as Eloquent;
+# use Jenssegers\Mongodb\Model as Eloquent; - SynEIS won't be using mongodb for User model for now, only mysql on SynAccounts.
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
   protected $guarded = ['_id'];
-  protected $collection = 'users';
+  protected $connection = 'mysql';
+  # protected $collection = 'users';
+  protected $table = 'syn_tbl_users';
   protected $hidden = ['password'];
   protected $fillable = ['email'];
   protected $rules = [
